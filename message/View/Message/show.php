@@ -1,11 +1,11 @@
 <?php
 header("content-type:text/html;charset=utf-8");
 $pdo = new PDO("mysql:host=127.0.0.1;dbname=test","root","root");
-$sql = "select * from message";
+$sql = "select * from liuyan";
 $res = $pdo->query($sql)->fetchAll();
 foreach ($res as $key => $value) {
   $data[$key]['id']=$res[$key]['id'];
-  $data[$key]['title']=$res[$key]['title'];
+  $data[$key]['name']=$res[$key]['name'];
   $data[$key]['text']=$res[$key]['text'];
   $data[$key]['time']=$res[$key]['time'];
 }
@@ -31,7 +31,7 @@ foreach ($res as $key => $value) {
   <?php foreach($data as $row) { ?>
   <tr>
   <td><?php echo $row['id']; ?></td>
-  <td><?php echo $row['title']; ?></td>
+  <td><?php echo $row['name']; ?></td>
   <td><?php echo $row['time']; ?></td>
   <td><?php echo $row['text']; ?></td>
   <td>

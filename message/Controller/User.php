@@ -1,19 +1,22 @@
 <?php 
-class User
+
+
+class User extends Controller
 {
 	public function login()
 	{
-		include 'User/login.php';
+		$this->display('User/login');
 	}
 
 	public function login_do()
 	{
-		$username = $_POST["username"];
-		$password = $_POST["password"];
+		$name = $_POST["name"];
+		$password = $_POST["pwd"];
 		$pdo = new PDO("mysql:host=127.0.0.1;dbname=test","root","root");
-        $sql = "select username,password from user where username = '$_POST[username]' and password = '$_POST[password]'";
-        $result = $pdo->query($sql);
-        if ($result) {
+        $sql = "select username,password from user where name = '$_POST[username]' and password = '$_POST[password]'";
+        $res = $pdo->query($sql);
+        echo $sql;die;
+        if ($res) {
         	echo "<script>alert('登陆成功！');parent.location.href='http://demo.message.com/Message.php?act=show'</script>";
         }else{
         	echo "<script>alert('登陆失败');parent.location.href='http://demo.message.com/User.php?act=login'</script>";
@@ -21,14 +24,14 @@ class User
 	}
 	public function register()
 	{
-		include 'User/register.php';
+		$this->display('User/register');
 	}
 	public function register_do()
 	{ 
 		$pdo = new PDO("mysql:host=127.0.0.1;dbname=test","root","root");
-		$username = $_POST['username'];
+		$name = $_POST['name'];
 		$password = $_POST['password'];	
-		$sql = "INSERT INTO user (`username`,`password`) VALUES ('$username','$password')";
+		$sql = "INSERT INTO user (`name`,`password`) VALUES ('$name','$password')";
 		$res = $pdo->query($sql);
 		if ($res) {
 			echo "<script>alert('注册成功');parent.location.href='http://demo.message.com/User.php?act=login'</script>";
@@ -37,6 +40,3 @@ class User
 		}
 	}
 }
-$user = new User;
-$act = isset($_GET['act'])?$_GET['act']:'login';
-$user->$act();

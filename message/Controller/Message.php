@@ -1,6 +1,10 @@
 <?php 
-class Message
+
+
+
+class Message  extends display
 {
+
 	public function add()
 	{
 		include 'Message/add.php';
@@ -9,10 +13,10 @@ class Message
 	public function add_do()
 	{
 		$pdo = new PDO("mysql:host=127.0.0.1;dbname=test","root","root");
-		$title = $_POST['title'];
+		$name = $_POST['name'];
 		$text = $_POST['text'];	
 		$time = time();
-		$sql = "INSERT INTO message (`title`,`text`,`time`) VALUES ('$title','$text','$time')";
+		$sql = "INSERT INTO message (`name`,`text`,`time`) VALUES ('$name','$text','$time')";
 		$res = $pdo->query($sql);
 		if ($res) {
 			echo "<script>alert('留言成功');parent.location.href='http://demo.message.com/Message.php?act=show'</script>";

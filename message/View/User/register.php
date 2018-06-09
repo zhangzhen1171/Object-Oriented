@@ -7,9 +7,9 @@
 <body>
     
 <form action="http://demo.message.com/User.php?act=register_do" method="post">
-    用户名：<input type="text" name="username"/>
+    用户名：<input type="text" name="name"/>
     <br/>
-    密　码:<input type="password" name="password"/>
+    密　码:<input type="password" name="pwd"/>
     <br/>
     确认密码：<input type="password" name="confirm"/>
     <br/>
